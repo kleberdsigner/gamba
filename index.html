@@ -16,8 +16,15 @@
     <div id="root"></div>
     <script type="module">
       import * as buffer from 'buffer'
+      import process from "process/browser"
       window.Buffer = buffer.Buffer
+      window.process = process
+      window.global = window
     </script>
     <script type="module" src="./src/index.tsx"></script>
+    import { WalletButton } from '@rainbow-me/rainbowkit';
+<WalletButton wallet="rainbow" />
+<WalletButton wallet="metamask" />
+<WalletButton wallet="coinbase" />
   </body>
 </html>
