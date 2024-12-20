@@ -13,13 +13,38 @@ import Header from './sections/Header'
 import RecentPlays from './sections/RecentPlays/RecentPlays'
 import Toasts from './sections/Toasts'
 import { MainWrapper, TosInner, TosWrapper } from './styles'
+import ( RainbowKitProvider, getDefautWallets } from '@rainbow-me/rainbowkit';
+import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc;
 
 function ScrollToTop() {
   const { pathname } = useLocation()
   React.useEffect(() => window.scrollTo(0, 0), [pathname])
   return null
 }
+[
+jsonRpcProvider({ rpc: (chainId} => ({ http: "https://cloundflare-eth.com/"})
+];
+const { connectors } = getdefaulWallets({
+  chains,
+});
 
+Const wagmiClient = createClient({
+  autoconnect: tru,
+  connectors,
+  provider,
+  webSocketProvider,
+Funcion MyApp({ Component, pageProps }: AppProps){
+  return (
+      <WagmiConfig client=wagmiClient}>
+        <RainbowKitProvider chains={chains}>
+          <Component {...pageProps} />
+        </RainbowKitProvider>
+      </WagmiConfig>
+    )
+}
+  export default MyApp;
+    
 function ErrorHandler() {
   const walletModal = useWalletModal()
   const toast = useToast()
